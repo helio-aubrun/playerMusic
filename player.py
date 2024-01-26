@@ -15,7 +15,7 @@ def play_time():
 	current_time = pygame.mixer.music.get_pos() / 1000
 	converted_current_time = time.strftime('%M:%S', time.gmtime(current_time))
 	song = song_box.get(ACTIVE)
-	song = f'C:/gui/audio/{song}.mp3'
+	song = f'audio/{song}.mp3'
 	song_mut = MP3(song)
 	global song_length
 	song_length = song_mut.info.length
