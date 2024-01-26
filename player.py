@@ -15,7 +15,7 @@ def play_time():
 	current_time = pygame.mixer.music.get_pos() / 1000
 	converted_current_time = time.strftime('%M:%S', time.gmtime(current_time))
 	song = song_box.get(ACTIVE)
-	song = f'audio/{song}.mp3'
+	song = f'music/{song}.mp3'
 	song_mut = MP3(song)
 	global song_length
 	song_length = song_mut.info.length
@@ -38,15 +38,15 @@ def play_time():
 	status_bar.after(1000, play_time)
 
 def add_song():
-	song = filedialog.askopenfilename(initialdir='audio/', title="Choose A Song", filetypes=(("mp3 Files", "*.mp3"), ))
-	song = song.replace("C:/gui/audio/", "")
+	song = filedialog.askopenfilename(initialdir='music/', title="Choose A Song", filetypes=(("mp3 Files", "*.mp3"), ))
+	song = song.replace("music/", "")
 	song = song.replace(".mp3", "")
 	song_box.insert(END, song)
 
 def add_many_songs():
-	songs = filedialog.askopenfilenames(initialdir='audio/', title="Choose A Song", filetypes=(("mp3 Files", "*.mp3"), ))
+	songs = filedialog.askopenfilenames(initialdir='music/', title="Choose A Song", filetypes=(("mp3 Files", "*.mp3"), ))
 	for song in songs:
-		song = song.replace("C:/gui/audio/", "")
+		song = song.replace("music/", "")
 		song = song.replace(".mp3", "")
 		song_box.insert(END, song)
 
@@ -54,7 +54,7 @@ def play():
 	global stopped
 	stopped = False
 	song = song_box.get(ACTIVE)
-	song = f'C:/gui/audio/{song}.mp3'
+	song = f'music/{song}.mp3'
 	pygame.mixer.music.load(song)
 	pygame.mixer.music.play(loops=0)
 	play_time()
@@ -147,7 +147,7 @@ def pause(is_paused):
 
 def slide(x):
 	song = song_box.get(ACTIVE)
-	song = f'C:/gui/audio/{song}.mp3'
+	song = f'music/{song}.mp3'
 	pygame.mixer.music.load(song)
 	pygame.mixer.music.play(loops=0, start=int(my_slider.get()))
 
